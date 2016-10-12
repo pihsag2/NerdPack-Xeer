@@ -54,7 +54,9 @@ local Keybinds = {
 }
 
 local Interrupts = {
-	{'Pummel'}
+    {'Pummel'},
+		{'Arcane Torrent', 'target.range<=8&spell(Pummel).cooldown>1&!prev_gcd(Pummel)'},
+    {'Shockwave', 'talent(1,1)&target.infront&!target.immune(stun)'}
 }
 
 local Cooldowns = {
@@ -81,7 +83,7 @@ local Something = {
 	--same skills in same order in both parts of rotation... placed them here :)
 	--actions.prot_aoe=focused_rage,if=talent.ultimatum.enabled&buff.ultimatum.up&!talent.vengeance.enabled
 	--actions.prot+=/focused_rage,if=talent.ultimatum.enabled&buff.ultimatum.up&!talent.vengeance.enabled
-	{'Focused Rage', 'talent(3,2)&buff(Ultimatum)&!talent(6,1)'},
+	--{'Focused Rage', 'talent(3,2)&buff(Ultimatum)&!talent(6,1)'},
 	--actions.prot_aoe+=/battle_cry,if=(talent.vengeance.enabled&talent.ultimatum.enabled&cooldown.shield_slam.remains<=5-gcd.max-0.5)||!talent.vengeance.enabled
 	--actions.prot+=/battle_cry,if=(talent.vengeance.enabled&talent.ultimatum.enabled&cooldown.shield_slam.remains<=5-gcd.max-0.5)||!talent.vengeance.enabled
 	{'Battle Cry', '{talent(6,1)&talent(3,2)&spell(Shield Slam).cooldown<=4.5-gcd}||!talent(6,1)'},
@@ -113,7 +115,7 @@ local ST = {
 	--actions.prot+=/ignore_pain,if=(rage>=60&!talent.vengeance.enabled)||(buff.vengeance_ignore_pain.up&buff.ultimatum.up)||(buff.vengeance_ignore_pain.up&rage>=30)||(talent.vengeance.enabled&!buff.ultimatum.up&!buff.vengeance_ignore_pain.up&!buff.vengeance_focused_rage.up&rage<30)
 	{'!Ignore Pain','{buff(Vengeance: Ignore Pain)&buff(Ignore Pain).duration<=gcd*2&rage>=13}||{!buff(Vengeance: Ignore Pain)&buff(Ignore Pain).duration<=gcd*2&rage>=20}||{rage>=60&!talent(6,1)}||{buff(Vengeance: Ignore Pain)&buff(Ultimatum)}||{buff(Vengeance: Ignore Pain)&rage>=30}||{talent(6,1)&!buff(Ultimatum)&!buff(Vengeance: Ignore Pain)&!buff(Vengeance: Focused Rage)&rage<30}'},
 	--actions.prot+=/focused_rage,if=(buff.vengeance_focused_rage.up&!buff.vengeance_ignore_pain.up)||(buff.ultimatum.up&buff.vengeance_focused_rage.up&!buff.vengeance_ignore_pain.up)||(talent.vengeance.enabled&buff.ultimatum.up&!buff.vengeance_ignore_pain.up&!buff.vengeance_focused_rage.up)||(talent.vengeance.enabled&!buff.vengeance_ignore_pain.up&!buff.vengeance_focused_rage.up&rage>=30)||(buff.ultimatum.up&buff.vengeance_ignore_pain.up&cooldown.shield_slam.remains=0&rage<10)||(rage>=100)
-	{'Focused Rage', '{buff(Vengeance: Focused Rage)&!buff(Vengeance: Ignore Pain)}||{buff(Ultimatum)&buff(Vengeance: Focused Rage)&!buff(Vengeance: Ignore Pain)}||{talent(6,1)&buff(Ultimatum)&!buff(Vengeance: Ignore Pain)&!buff(Vengeance: Focused Rage)}||{talent(6,1)&!buff(Vengeance: Ignore Pain)&!buff(Vengeance: Focused Rage)&rage>=30}||{buff(Ultimatum)&buff(Vengeance: Ignore Pain)&spell(Shield Slam)&rage<10}||{rage>=100}'},
+	--{'Focused Rage', '{buff(Vengeance: Focused Rage)&!buff(Vengeance: Ignore Pain)}||{buff(Ultimatum)&buff(Vengeance: Focused Rage)&!buff(Vengeance: Ignore Pain)}||{talent(6,1)&buff(Ultimatum)&!buff(Vengeance: Ignore Pain)&!buff(Vengeance: Focused Rage)}||{talent(6,1)&!buff(Vengeance: Ignore Pain)&!buff(Vengeance: Focused Rage)&rage>=30}||{buff(Ultimatum)&buff(Vengeance: Ignore Pain)&spell(Shield Slam)&rage<10}||{rage>=100}'},
 	--actions.prot+=/demoralizing_shout,if=incoming_damage_2500ms>health.max*0.20
 	{'Demoralizing Shout', 'incdmg(2.5)>health.max*0.20'},
 	--actions.prot+=/shield_wall,if=incoming_damage_2500ms>health.max*0.50
