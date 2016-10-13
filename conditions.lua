@@ -4,73 +4,79 @@
 
 local LAD = LibStub("LibArtifactData-1.0")
 
---/dump NeP.DSL:Get('artifact.force_update')()
-NeP.DSL:Register('artifact.force_update', function ()
+--/dump NeP.DSL:Get('Xartifact.force_update')()
+NeP.DSL:Register('Xartifact.force_update', function ()
     return LAD.ForceUpdate()
 end)
 
---/dump NeP.DSL:Get('artifact.acquired_power')('artifactID')
-NeP.DSL:Register('artifact.acquired_power', function (artifactID)
+
+--/dump NeP.DSL:Get('Xartifact.acquired_power')('artifactID')
+NeP.DSL:Register('Xartifact.acquired_power', function (artifactID)
 		local amount_power_acquired = LAD.GetAcquiredArtifactPower(artifactID)
   	return LAD.GetAcquiredArtifactPower(artifactID)
 end)
 
---/dump NeP.DSL:Get('artifact.activeid')()
-NeP.DSL:Register('artifact.active_id', function ()
+
+
+--/dump NeP.DSL:Get('Xartifact.active_id')()
+NeP.DSL:Register('Xartifact.active_id', function ()
 		local artifactID = LAD.GetActiveArtifactID(artifactID)
     return LAD.GetActiveArtifactID()
 end)
 
---/dump NeP.DSL:Get('artifact.get_all_info')()
-NeP.DSL:Register('artifact.get_all_info', function ()
+
+--/dump NeP.DSL:Get('Xartifact.get_all_info')()
+NeP.DSL:Register('Xartifact.get_all_info', function ()
     return LAD.GetAllArtifactsInfo()
 end)
 
---/dump NeP.DSL:Get('artifact.info')('artifactID')
-NeP.DSL:Register('artifact.info', function (artifactID)
+--/dump NeP.DSL:Get('Xartifact.info')('artifactID')
+NeP.DSL:Register('Xartifact.info', function (artifactID)
 		local artifactID, data = LAD.GetArtifactInfo(artifactID)
     return LAD.GetArtifactInfo(artifactID)
 end)
 
---/dump NeP.DSL:Get('artifact.knowledge')()
-NeP.DSL:Register('artifact.knowledge', function ()
+
+--/dump NeP.DSL:Get('Xartifact.knowledge')()
+NeP.DSL:Register('Xartifact.knowledge', function ()
 		local knowledge_level, knowledge_multiplier = LAD.GetArtifactKnowledge()
 		return LAD.GetArtifactKnowledge()
 end)
 
---/dump NeP.DSL:Get('artifact.power')('artifactID')
-NeP.DSL:Register('artifact.power', function (artifactID)
+
+--/dump NeP.DSL:Get('Xartifact.power')('artifactID')
+NeP.DSL:Register('Xartifact.power', function (artifactID)
     local artifact_id, unspent_power, power, max_power, power_for_next_rank, num_ranks_purchased, num_ranks_purchaseable = LAD.GetArtifactPower(artifactID)
 		return LAD.GetArtifactPower(artifactID)
 end)
 
---/dump NeP.DSL:Get('artifact.relics')('artifactID')
-NeP.DSL:Register('artifact.relics', function (artifactID)
+--/dump NeP.DSL:Get('Xartifact.relics')('artifactID')
+NeP.DSL:Register('Xartifact.relics', function (artifactID)
 		local artifactID, data = LAD.GetArtifactRelics(artifactID)
     return LAD.GetArtifactRelics(artifactID)
 end)
 
---/dump NeP.DSL:Get('artifact.traits')(NeP.DSL:Get('artifact.activeid'))
-NeP.DSL:Register('artifact.traits', function (artifactID)
+--/dump NeP.DSL:Get('Xartifact.traits')(NeP.DSL:Get('Xartifact.activeid'))
+NeP.DSL:Register('Xartifact.traits', function (artifactID)
 		local artifactID, data = LAD.GetArtifactTraits(artifactID)
     return LAD.GetArtifactTraits(artifactID)
 end)
 
---/dump NeP.DSL:Get('artifact.num_obtained')()
-NeP.DSL:Register('artifact.num_obtained', function ()
+--/dump NeP.DSL:Get('Xartifact.num_obtained')()
+NeP.DSL:Register('Xartifact.num_obtained', function ()
 		local numObtained = LAD.GetArtifactKnowledge()
 		return LAD.GetNumObtainedArtifacts()
 end)
 
---/dump NeP.DSL:Get('artifact.trait_info')('player', 'Warbreaker')
---/dump NeP.DSL:Get('artifact.trait_info')('player', 'Thoradin\'s Might')
-NeP.DSL:Register('artifact.trait_info', function(_, spell)
+--/dump NeP.DSL:Get('Xartifact.trait_info')('player', 'Warbreaker')
+--/dump NeP.DSL:Get('Xartifact.trait_info')('player', 'Thoradin\'s Might')
+NeP.DSL:Register('Xartifact.trait_info', function(_, spell)
 	local currentRank = 0
-			artifactID = NeP.DSL:Get('artifact.active_id')()
+			artifactID = NeP.DSL:Get('Xartifact.active_id')()
 			if not artifactID then
-					NeP.DSL:Get('artifact.force_update')()
+					NeP.DSL:Get('Xartifact.force_update')()
 			end
-			local _, traits = NeP.DSL:Get('artifact.traits')(artifactID)
+			local _, traits = NeP.DSL:Get('Xartifact.traits')(artifactID)
 			if traits then
 					for _,v in ipairs(traits) do
 							if v.name == spell then
@@ -80,10 +86,10 @@ NeP.DSL:Register('artifact.trait_info', function(_, spell)
 			end
 end)
 
---/dump NeP.DSL:Get('artifact.enabled')('player', 'Warbreaker')
---/dump NeP.DSL:Get('artifact.enabled')('player', 'Thoradin\'s Might')
-NeP.DSL:Register('artifact.enabled', function(_, spell)
-		if select(10,NeP.DSL:Get('artifact.trait_info')(_, spell)) then
+--/dump NeP.DSL:Get('Xartifact.enabled')('player', 'Warbreaker')
+--/dump NeP.DSL:Get('Xartifact.enabled')('player', 'Thoradin\'s Might')
+NeP.DSL:Register('Xartifact.enabled', function(_, spell)
+		if select(10,NeP.DSL:Get('Xartifact.trait_info')(_, spell)) then
 			return true
 		else
 			return false
@@ -163,7 +169,7 @@ end)
 
 --/dump NeP.DSL:Get('dot.duration')('target','Rip')
 NeP.DSL:Register('dot.duration', function(target, spell)
-	local debuff,_,duration,expires,caster = Xeer.UnitDot(target, spell)
+	local debuff,_,duration,expires,caster = Xeer.UnitDot(target, spell, _)
 	if debuff and (caster == 'player' or caster == 'pet') then
 		return duration
 	end
@@ -396,6 +402,11 @@ end)
 --/dump NeP.DSL:Get('runic_power')()
 NeP.DSL:Register('runic_power', function()
 	return NeP.DSL:Get('runicpower')('player')
+end)
+
+--/dump NeP.DSL:Get('holy_power')()
+NeP.DSL:Register('holy_power', function()
+	return NeP.DSL:Get('holypower')('player')
 end)
 
 --/dump NeP.DSL:Get('action.cast_time')('player','Revenge')
